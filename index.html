@@ -1,1 +1,153 @@
 <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Site</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: aliceBlue;
+        }
+        .head{
+            height: 50px;
+            margin-bottom: 100px;
+            box-shadow: 0 8px 8px -4px lightBlue;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo{
+            margin-left: 50px;
+            padding 10px;
+        }
+        .menu{
+            padding 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+            margin-right: 50px;
+            list-style: none;
+        }
+        .menu > li {
+            width: 50px;
+        }
+        .btn{
+            padding: 16px;
+        }
+        .btn:hover {
+            background-color: lightBlue;
+            color: white;
+        }
+        .selected{
+            background-color: skyBlue;
+            border-bottom: 1px solid #888888;
+        }
+        .main{
+            margin-left: 50px;
+            margin-right: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+        .mainBox{
+            background: skyBlue;
+            box-shadow: 0px 8px 8px -4px lightBlue;
+            border-radius: 5px;
+            width: 400px;
+            height: 400px;
+            text-align: center;
+        }
+        p{
+            font-size: 20px;
+        }
+        a {
+            text-decoration: none;
+        }
+        .footer{
+            padding: 10px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -8px 8px -4px lightBlue;
+            text-align: center;
+        }
+        .bin{
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border-radius:5px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="logo">Test Website</div>
+        <ul class="menu">
+            <li class="selected btn" id="btn_home"><a href="#">Home</a></li>
+            <li class="btn" id="btn_about"><a href="#">About</a></li>
+            <li class="btn" id="btn_contact"><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="mainBox">
+            <h1 id="textHead">The Test App</h1>
+            <p id="textBody">This app is a work in progress. Coming soon!</p>
+        </div>
+    </div>
+    
+    <div class="footer">All right reserved 2023</div>
+    <script> 
+        // The buttons
+        const btn_home = document.getElementById('btn_home');
+        const btn_about = document.getElementById('btn_about');
+        const btn_contact = document.getElementById('btn_contact');
+        // All at once
+        const btns = document.querySelectorAll('.btn');
+
+        // The contents
+        const textHead = document.getElementById('textHead');
+        const textBody = document.getElementById('textBody');
+
+        // Click event listener for each
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                //Remove 'selected' class
+                btns.forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // Add 'selected' class
+                btn.classList.add('selected');
+
+                if (btn == btn_home) {
+                    textHead.textContent = "The Test App";
+                    textBody.textContent = "This app is a work in progress. Coming soon!";
+                } else if (btn == btn_about) {
+                    textHead.textContent = "About Us";
+                    textBody.innerHTML = "This is the about us page. <br /> <br /> <br /> <br />";
+                    textBody.innerHTML += "<a class= 'bin'>Learn more!</a>";
+                    
+                } else if (btn == btn_contact) {
+                    textHead.textContent = "Contact Us";
+                    textBody.innerHTML = "This is the contact us page. <br /> <br /> <br /> <br />";
+                    textBody.innerHTML += "<a href='tel:8103575377' class= 'bin'>Call us today!</a>";
+                } else {
+                    console.log('error!');
+                }
+            })
+        })
+    </script>
+</body>
+</html>
